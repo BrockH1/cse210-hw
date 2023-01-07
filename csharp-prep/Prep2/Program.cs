@@ -5,7 +5,7 @@ class Program
     static void Main(string[] args)
     {
         string letter = "A";
-        Console.Write("What is your grade?");
+        Console.Write("What is your percentage grade?: ");
         string grade = Console.ReadLine();
         int numGrade = int.Parse(grade);
         if (numGrade >= 90)
