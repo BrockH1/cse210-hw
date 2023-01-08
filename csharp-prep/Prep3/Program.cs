@@ -7,7 +7,7 @@ class Program
         string answer = "Yes";
         while (answer == "Yes")
         {
-            Console.WriteLine("What is the magic number?: ");
+            Console.Write("What is the magic number?: ");
             string number = Console.ReadLine();
             int input = int.Parse(number);
             Random randomGenerator = new Random();
@@ -16,19 +16,19 @@ class Program
             {
                 while (input < magicNumber)
                 {
-                    Console.WriteLine("Higher. Try again: ");
+                    Console.Write("Higher. Try again: ");
                     input = int.Parse(Console.ReadLine());
                 }
                 while (input > magicNumber)
                 {
-                Console.WriteLine("Lower. Try again: ");
+                Console.Write("Lower. Try again: ");
                 input = int.Parse(Console.ReadLine());
                 }
 
         
             }
         
-        Console.WriteLine("That's the magic number! You did it! Dodododoododoooo.");
+        Console.WriteLine("That's the magic number! You did it! Dodododoododoooo!");
         Console.WriteLine("Do you want to play again? Type Yes or No");
         answer = Console.ReadLine();
         }
