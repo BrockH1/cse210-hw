@@ -19,19 +19,23 @@ class Program
             if (number != 0)
             {
                 numbers.Add(number);
-                total = number + total; 
-                count++;
+                count ++;
             }
         }
-        int average = total / count;
-        for (int i = 1; i < numbers.Count; i++)
+        foreach (int integer in numbers)
         {
-            if (numbers[i] > numbers[i-1])
-            {
-                highest = numbers[i];
-            }
+           
+            total = integer + total;
 
         }
+        foreach (int integer in numbers)
+        {
+            if (integer > highest)
+            {
+                highest = integer;
+            }
+        }
+        float average = total / count;
         Console.WriteLine($"The sum is {total}.");
         Console.WriteLine($"The average is {average}.");
         Console.WriteLine($"The highest number is {highest}.");
