@@ -1,6 +1,6 @@
 public class Menu
 {
-    public void displayMenu()
+    public void DisplayMenu()
     {
         Console.WriteLine("Menu Options:");
         Console.WriteLine("1. Start Breathing Activity");

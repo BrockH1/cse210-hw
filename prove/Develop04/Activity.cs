@@ -6,22 +6,22 @@ public class Activity
 
     private string _description;
 
-    public string getDescription()
+    public string GetDescription()
     {
         return _description;
     }
 
-    public string getActivity()
+    public string GetActivity()
     {
         return _activity;
     }
 
-    public int getTimer()
+    public int GetTimer()
     {
         return _timer;
     }
 
-    public void setTimer(int timer)
+    public void SetTimer(int timer)
     {
         _timer = timer;
     }
@@ -36,50 +36,55 @@ public class Activity
 
     }
 
-    public void finalMessage()
+    public void FinalAnimation()
     {
-        Console.Write("Well Done!! ");
-
         for (int i = 0; i < 4; i++)
         {
-        Console.Write("^.^");
-        Thread.Sleep(200);
-        Console.Write("\b\b\b");
-        Console.Write("^o^");
-        Thread.Sleep(200);
-        Console.Write("\b\b\b");
-        Console.Write("^O^");
-        Thread.Sleep(200);
-        Console.Write("\b\b\b");
-        Console.Write("^o^");
-        Thread.Sleep(200);
-        Console.Write("\b\b\b");
+            Console.Write("^.^");
+            Thread.Sleep(200);
+            Console.Write("\b\b\b");
+            Console.Write("^o^");
+            Thread.Sleep(200);
+            Console.Write("\b\b\b");
+            Console.Write("^O^");
+            Thread.Sleep(200);
+            Console.Write("\b\b\b");
+            Console.Write("^o^");
+            Thread.Sleep(200);
+            Console.Write("\b\b\b");
         }
 
-        Console.WriteLine($"You have completed another {_timer} seconds of the {_activity} activity.");
-        for (int i = 0; i < 4; i++)
-        {
-        Console.Write("^.^");
-        Thread.Sleep(200);
-        Console.Write("\b\b\b");
-        Console.Write("^o^");
-        Thread.Sleep(200);
-        Console.Write("\b\b\b");
-        Console.Write("^O^");
-        Thread.Sleep(200);
-        Console.Write("\b\b\b");
-        Console.Write("^o^");
-        Thread.Sleep(200);
-        Console.Write("\b\b\b");
-        }
     }
 
-    public void activityIntro()
+    public void FinalMessage()
+    {
+        Console.Write("Well Done!! ");
+        FinalAnimation();
+        //Console.WriteLine("");
+
+        Console.Write($"You have completed another {_timer} seconds of the {_activity} activity.");
+        FinalAnimation();
+        Console.WriteLine("");
+    }
+
+    public void ActivityIntro()
     {
         Console.WriteLine($"Welcome to the {_activity} activity!");
         Console.WriteLine(_description);
         Console.WriteLine("");
         Console.WriteLine("How long, in seconds, would you like for your session?");
+    }
+
+    public void CountDown()
+    {
+        for (int i = 4; i > 0; i--)
+        {
+            Console.Write(i);
+            Thread.Sleep(1000);
+            Console.Write("\b \b");
+
+        }
+        Console.WriteLine("\n");
     }
 
 

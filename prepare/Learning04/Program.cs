@@ -9,7 +9,7 @@ class Program
         WritingAssignment writing = new WritingAssignment("Brock", "Programming", "Jane Ere");
         
         Console.WriteLine(student.getSummaray());
-        Console.WriteLine(math.getHomeworkList());
+        Console.WriteLine(math.GetHomeworkList());
         Console.WriteLine(writing.getWritingInformation());
 
 

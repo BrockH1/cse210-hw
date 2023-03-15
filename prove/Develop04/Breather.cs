@@ -7,7 +7,7 @@ public class Breather : Activity
 
     }
 
-    public void breatheIn()
+    public void BreatheIn()
     {
         for (int i = 4; i > 0; i--)
         {
@@ -19,7 +19,7 @@ public class Breather : Activity
         Console.WriteLine("");
     }
 
-    public void breatheOut()
+    public void BreatheOut()
     {
         for (int i = 6; i > 0; i--)
         {
@@ -28,27 +28,28 @@ public class Breather : Activity
             Console.Write("\b \b");
 
         }
-        Console.WriteLine("");
+        //Console.WriteLine("");
     }
 
-    public void startBreathing()
+    public void StartBreathing()
     {
         DateTime startTime = DateTime.Now;
-        DateTime futureTime = startTime.AddSeconds(getTimer());
+        DateTime futureTime = startTime.AddSeconds(GetTimer());
         DateTime currentTime = DateTime.Now;
-        Console.Write("Get ready...");
-        breatheIn();
-        Console.WriteLine("\n");
+
+        Console.Write("Get Ready...");
+        CountDown();
+
         while (futureTime > currentTime)
         {
             Console.Write("Breathe in...");
-            breatheIn();
+            CountDown();
             Console.Write("Now breath out...");
-            breatheOut();
+            BreatheOut();
             Console.WriteLine("\n");
             currentTime = DateTime.Now;
         }
 
-        finalMessage();
+        FinalMessage();
     }
 }
