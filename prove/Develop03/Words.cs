@@ -1,14 +1,14 @@
 public class Word
 {
-    public List<string> newVerse = new List<string>();
+    private List<string> _newVerse = new List<string>();
 
-    Verse verse = new Verse();
+    private string _hiddenWord = "";
 
-    public string hiddenWord = "";
+    private bool _isHidden;
 
+    private int _hiddenCount;
     
-
-    public void getVerse()
+    public List<string> GetVerse()
     {
         string loadFile = "scripture.txt";
         string[] lines = System.IO.File.ReadAllLines(loadFile);
@@ -19,40 +19,64 @@ public class Word
                 
                 foreach (string thing in texts)
                 {
-                    newVerse.Add(thing);
+                    _newVerse.Add(thing);
                 }
             }
+        return _newVerse;
     }
-    public void hideWords()
+    public void HideWords()
     {
-        for (int i = 0; i < newVerse.Count; i++)
+        for (int i = 0; i < _newVerse.Count; i++)
         {
-            string hiddenWord = "";
-            int count = newVerse[i].Length;
+            _hiddenWord = "";
+            int count = _newVerse[i].Length;
             Random number = new Random();
-            int odds = number.Next(0,3);
+            int odds = number.Next(0,5);
             if (odds == 2)
             {
                 for (int p = 0; p < count; p++)
                 {
-                    hiddenWord += "_";
+                    _hiddenWord += "_";
                 }
 
-                newVerse[i] = hiddenWord;
+                _newVerse[i] = _hiddenWord;
 
             }
         }
 
     }
 
-    public void showVerse()
+    public void ShowVerse()
         {
-            foreach (string item in newVerse)
+            foreach (string item in _newVerse)
             {
                 Console.Write($"{item} ");
             }
             
         }
+
+
+    public bool CheckWords()
+    {
+        foreach (string thing in _newVerse)
+        {
+
+            if (thing.Contains("_"))
+            {
+                _hiddenCount++;
+            }
+
+        }
+        if (_hiddenCount == _newVerse.Count)
+        {
+            return _isHidden = true;
+        }
+        else
+        {
+            _hiddenCount = 0;
+            return _isHidden = false;
+        }
+    }
 
 
 

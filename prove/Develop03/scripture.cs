@@ -1,27 +1,25 @@
 public class Scripture
 {
     Reference reference = new Reference();
-    public void getScripture()
+    public void GetScripture()
     {
         string loadFile = "scripture.txt";
         string[] lines = System.IO.File.ReadAllLines(loadFile);
         foreach (string item in lines)
             {
                 string[] parts = item.Split("|");
-                reference.book = parts[0];
-                reference.chapter = parts[1];
-                reference.number = parts[2];
+                reference.SetBook(parts[0]);
+                reference.SetChapter(parts[1]);
+                reference.SetNumber(parts[2]);
             }
     }
-    
-    Word word = new Word();
-    Verse verse = new Verse();
-    public void showScripture()
+
+    public void ShowScripture()
     {
 
-        Console.Write($"{reference.book} ");
-        Console.Write($"{reference.chapter}:");
-        Console.Write($"{reference.number} ");
+        Console.Write($"{reference.GetBook()} ");
+        Console.Write($"{reference.GetChapter()}:");
+        Console.Write($"{reference.GetNumber()} ");
 
 
     }
