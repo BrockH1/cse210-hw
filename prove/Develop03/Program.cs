@@ -16,11 +16,12 @@ class Program
 
         if (yes == "Yes")
         {
+        Console.Clear();
         while (input != "Quit")
         {
             scripture.ShowScripture();
             word.ShowVerse();
-            Console.WriteLine();
+            Console.WriteLine("\n");
             Console.Write("Press enter to remove words or type 'Quit' to exit the game.");
             input = Console.ReadLine();
             if (input == "")
@@ -28,16 +29,22 @@ class Program
                 Console.Clear();
                 word.HideWords();
             }
+            else
+            {
+                Console.Clear();
+            }
             if (word.CheckWords())
             {
+                Console.Clear();
+                scripture.ShowScripture();
+                word.ShowVerse();
+                Console.WriteLine("\n");
+                Console.Write("Press enter to remove words or type 'Quit' to exit the game.");
+                Console.ReadLine();
+                Console.Clear();
                 input = "Quit";
             }
         }
-        scripture.ShowScripture();
-        word.ShowVerse();
-        Console.WriteLine();
-        Console.Write("Press enter to remove words or type 'Quit' to exit the game.");
-        Console.ReadLine();
         Console.Clear();
         }
 

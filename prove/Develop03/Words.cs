@@ -7,7 +7,7 @@ public class Word
     private bool _isHidden;
 
     private int _hiddenCount;
-    
+
     public List<string> GetVerse()
     {
         string loadFile = "scripture.txt";
@@ -28,19 +28,25 @@ public class Word
     {
         for (int i = 0; i < _newVerse.Count; i++)
         {
+            if (_newVerse[i].Contains("_"))
+            {
+                _hiddenWord = "";
+            }
+            else
+            {
             _hiddenWord = "";
-            int count = _newVerse[i].Length;
             Random number = new Random();
             int odds = number.Next(0,5);
             if (odds == 2)
             {
-                for (int p = 0; p < count; p++)
+                for (int p = 0; p < _newVerse[i].Length; p++)
                 {
                     _hiddenWord += "_";
                 }
 
                 _newVerse[i] = _hiddenWord;
 
+            }
             }
         }
 
