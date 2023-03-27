@@ -13,17 +13,50 @@ public class Reflector : Activity
     public List <string> _help = new List<string>();
 
     public List <string> _selfless = new List<string>();
-    public Reflector(string activity, string description, int timer) :base(activity, description, timer)
+    public Reflector(int timer) :base(timer)
     {
         AddPrompts();
 
     }
 
-    //public List<string> getPrompts(List <string> prompts, List <string> stoodUp, List <string> difficult, List <string> help, List <string> selfless)
-    //{
-    //    return _prompts;
+    public override void ActivityIntro()
+    {
+        Console.WriteLine($"Welcome to the reflection activity!");
+        Console.WriteLine("This activity will help you reflect on times in your life when you have shown strength and resilience. This will help you recognize the power you have and how you can use it in other aspects of your life.");
+        Console.WriteLine("");
+        Console.WriteLine("How long, in seconds, would you like for your session?");
+    }
 
-    //}
+        public override void FinalMessage()
+    {
+        Console.Write("Well Done!! ");
+        FinalAnimation();
+
+        Console.Write($"You have completed another {GetTimer()} seconds of the refletion activity.");
+        FinalAnimation();
+        Console.WriteLine("");
+    }
+
+    public override void FinalAnimation()
+    {
+        for (int i = 0; i < 4; i++)
+        {
+            Console.Write("  ()  ");
+            Thread.Sleep(300);
+            Console.Write("\b\b\b\b\b\b");
+            Console.Write(" (  ) ");
+            Thread.Sleep(300);
+            Console.Write("\b\b\b\b\b\b");
+            Console.Write("(    )");
+            Thread.Sleep(300);
+            Console.Write("\b\b\b\b\b\b");
+            Console.Write(" (  ) ");
+            Thread.Sleep(300);
+            Console.Write("\b\b\b\b\b\b");
+
+        }
+
+    }
 
     public void AddPrompts()
     {
@@ -70,7 +103,7 @@ public class Reflector : Activity
 
     }
 
-    public void StartReflection()
+    public override void StartActivity()
     {
         Random number = new Random();
         int odds = number.Next(0,_prompts.Count);
@@ -98,8 +131,6 @@ public class Reflector : Activity
             FinalAnimation();
             Console.WriteLine("");
         }
-
-        FinalMessage();
 
 
     }

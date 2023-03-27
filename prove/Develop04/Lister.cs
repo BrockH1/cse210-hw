@@ -4,10 +4,28 @@ public class Lister:Activity
 
     public string _prompt;
 
-    public Lister (string activity, string description, int timer) :base(activity, description, timer)
+    public Lister (int timer) :base(timer)
     {
         AddQuestions();
 
+    }
+
+    public override void ActivityIntro()
+    {
+        Console.WriteLine($"Welcome to the listing activity!");
+        Console.WriteLine("This activity will help you reflect on the good things in your life by having you list as many things as you can in a certain area.");
+        Console.WriteLine("");
+        Console.WriteLine("How long, in seconds, would you like for your session?");
+    }
+
+        public override void FinalMessage()
+    {
+        Console.Write("Well Done!! ");
+        FinalAnimation();
+
+        Console.Write($"You have completed another {GetTimer()} seconds of the listing activity.");
+        FinalAnimation();
+        Console.WriteLine("");
     }
 
     public void AddQuestions()
@@ -27,7 +45,7 @@ public class Lister:Activity
         return _questions[odds];
     }
 
-    public void StartListing()
+    public override void StartActivity()
     {
         Console.Write("Get Ready...");
         CountDown();
@@ -37,8 +55,6 @@ public class Lister:Activity
         CountDown();
 
         GetResponse();
-
-        FinalMessage();
 
     }
 

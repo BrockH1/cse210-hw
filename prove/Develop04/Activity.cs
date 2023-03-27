@@ -1,20 +1,6 @@
-public class Activity
+public abstract class Activity
 {
     private int _timer;
-
-    private string _activity;
-
-    private string _description;
-
-    public string GetDescription()
-    {
-        return _description;
-    }
-
-    public string GetActivity()
-    {
-        return _activity;
-    }
 
     public int GetTimer()
     {
@@ -26,17 +12,12 @@ public class Activity
         _timer = timer;
     }
 
-    public Activity(string activity, string description, int timer)
+    public Activity(int timer)
     {
-        _activity = activity;
-
-        _description = description;
-
         _timer = timer;
-
     }
 
-    public void FinalAnimation()
+    public virtual void FinalAnimation()
     {
         for (int i = 0; i < 4; i++)
         {
@@ -56,24 +37,11 @@ public class Activity
 
     }
 
-    public void FinalMessage()
-    {
-        Console.Write("Well Done!! ");
-        FinalAnimation();
-        //Console.WriteLine("");
+    public abstract void StartActivity();
 
-        Console.Write($"You have completed another {_timer} seconds of the {_activity} activity.");
-        FinalAnimation();
-        Console.WriteLine("");
-    }
+    public abstract void FinalMessage();
 
-    public void ActivityIntro()
-    {
-        Console.WriteLine($"Welcome to the {_activity} activity!");
-        Console.WriteLine(_description);
-        Console.WriteLine("");
-        Console.WriteLine("How long, in seconds, would you like for your session?");
-    }
+    public abstract void ActivityIntro();
 
     public void CountDown()
     {
