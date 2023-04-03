@@ -1,16 +1,12 @@
-public class Methods
+public abstract class Methods
 {
-    private int _shield = 20;
-
-    private int _transport = 5;
-
-    private int _guns = 5;
-
-    private int _defense = 5;
+    public bool _decision;
 
     public List<string> _code1 = new List<string>();
 
     public List<string> _code2 = new List<string>();
+
+    public List<string> _code3 = new List<string>();
 
     private string _name;
 
@@ -18,45 +14,6 @@ public class Methods
 
     private bool _safe = true;
 
-    public int GetShield()
-    {
-        return _shield;
-    }
-
-    public void SetShield(int shield)
-    {
-        _shield = shield;
-    }
-
-    public int GetTransport()
-    {
-        return _transport;
-    }
-
-    public void SetTransport(int transport)
-    {
-        _transport = transport;
-    }
-
-    public int GetGuns()
-    {
-        return _guns;
-    }
-
-    public void SetGuns(int guns)
-    {
-        _guns = guns;
-    }
-
-    public int GetDefense()
-    {
-        return _defense;
-    }
-
-    public void SetDefense(int defense)
-    {
-        _defense = defense;
-    }
 
     public bool IsSafe()
     {
@@ -111,10 +68,18 @@ public class Methods
         _code2.Add("d");
         _code2.Add("4");
         _code2.Add("s");
+
+        _code3.Add("1");
+        _code3.Add("2");
+        _code3.Add("3");
+        _code3.Add("A");
+        _code3.Add("B");
+        _code3.Add("C");
     }
 
     public virtual void DisplayOptions (string option1, string option2, string option3, string option4)
     {
+        Console.WriteLine();
         Console.WriteLine($"1. {option1}");
         Console.WriteLine($"2. {option2}");
         Console.WriteLine($"3. {option3}");
@@ -148,10 +113,10 @@ public class Methods
         string response;
         response = Console.ReadLine();
         SetInput(response);
-        //while (input != "1"||"2"||"3"||"4")
-        //{
-        //    input = Console.ReadLine();
-        //}
+        while (response != "1"&& response != "2" && response!= "3" && response != "4")
+        {
+            response = Console.ReadLine();
+        }
         Console.Clear();
     }
 
@@ -191,8 +156,10 @@ public class Methods
         Console.Clear();
         DisplayQuery("Scan Perimeter? Y or N: ", 30);
         input = Console.ReadLine();
+        Console.Clear();
         if (input == "Y")
         {
+        Dots();
         if (IsSafe())
         {
             Console.Clear();
@@ -200,39 +167,57 @@ public class Methods
         }
         else
         {
-            DisplayMessage("PERIMETER BREACHED", 30);
+            Blink("PERIMETER BREACHED");
         }
         }
     }
 
-    public void CheckInventory()
+    public bool MakeDecision()
     {
+        string input;
+        input = Console.ReadLine();
+        if (input == "Y")
+        {
+            return _decision = true;
+        }
+
+        else
+        {
+            return _decision = false;
+        }
+    }
+
+    public void Blink(string word)
+    {
+        for (int i = 0; i < 4; i++)
+        {
         Console.Clear();
-        Console.WriteLine($"Shield Level: {GetShield()}");
-        Console.WriteLine($"Transport Units: {GetTransport()}");
-        Console.WriteLine($"Gunships: {GetGuns()}");
-        Console.WriteLine($"Defensive Ships: {GetDefense()}");
-        Console.WriteLine();
-        Console.Write("Press anything to continue.");
-        Console.ReadLine();
-        Console.Clear();
+        Thread.Sleep(200);
+        Console.Write(word);
+        Thread.Sleep(200);
+        }
+
+        Thread.Sleep(2000);
     }
 
  
 
     public void HackingGame(List<string> code, int size, int speed, int difficulty)
     {
+        Dots();
+        Console.Clear();
         string password = "False";
         string key = "";
 
         while (password != key)
         {
+        key = "";
         for (int i = 0; i < size; i++)
         {
             Random number = new Random();
             Random number2 = new Random();
             int odds = number.Next(0, code.Count);
-            int blink = number2.Next(0, 100);
+            int blink = number2.Next(0, difficulty);
             if (blink == 25)
             {
                 for (int x = 0; x < 3; x++)
@@ -270,7 +255,7 @@ public class Methods
         }
         else
         {
-            Console.WriteLine("[ERROR]");
+            Blink("[ERROR]");
             Thread.Sleep(2000);
             Console.Clear();
             DisplayQuery("Next attempt incoming", 30);
@@ -279,4 +264,8 @@ public class Methods
         }
         }
     }
+
+    public abstract void StartGame();
+
+    public abstract void GiveInstructions();
 }

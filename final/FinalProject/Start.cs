@@ -1,6 +1,8 @@
 public class Start:Methods
 {
 
+    Battle battle = new Battle(5, 5, 5, 5, 5);
+
     public void ClockIn()
     {
         AddCode();
@@ -12,6 +14,11 @@ public class Start:Methods
         Dots();
         DisplayMessage($"Officer {GetName()}", 30);
         DisplayMessage("You are now clocked in.", 30);
+        Console.Clear();
+        DisplayMessage("You have 1 unread message.", 30);
+        Console.Clear();
+        DisplayMessage($"Officer {GetName()}, an emergency signal was detected 20 lightyears away during your leave. There was no specification other than that it was an emergency.\nFive gun ships were sent to respond to the signal. If all goes well, they should be back by the end of the day. \n-Srgt. Hoops", 30);
+        Console.ReadLine();
         ScanPerimeter();
         Console.Clear();
         DisplayQuery("Take Inventory? Y o N: ", 30);
@@ -19,19 +26,22 @@ public class Start:Methods
         Console.Clear();
         if (input == "Y")
         {
-            CheckInventory();
+            battle.CheckInventory();
+            Console.Write("Press anything to continue.");
+            Console.ReadLine();
+            Console.Clear();
         }
-
-        DisplayMessage("FIREWALL BREACH", 30);
-        DisplayQuery("Counteract breach? Y o N: ", 30);
-        input = Console.ReadLine();
+        
+        Blink("[Firewall Breach]");
         Console.Clear();
-        if (input == "Y")
-        {
-            HackingGame(_code1, 500, 30, 100);
-        }
+        GiveInstructions();
+        DisplayQuery("Preparing to counteract breach", 30);
+        HackingGame(_code1, 500, 30, 100);
 
-        DisplayMessage("FIREWALL BREACH", 30);
+        Blink("[FIREWALL BREACH]");
+        Console.Clear();
+        DisplayQuery("Preparing to counteract breach", 30);
+        Dots();
         Console.Clear();
         for (int i = 0; i <1000; i++)
         {
@@ -44,26 +54,44 @@ public class Start:Methods
         Console.Write("Key: ");
         Console.ReadLine();
         Console.Clear();
-        Console.WriteLine("[ERROR]");
+        Blink("[ERROR]");
         Thread.Sleep(2000);
         Console.Clear();
     }
     public virtual void Convo1()
     {
         Console.Clear();
+        Thread.Sleep(2000);
         DisplayMessage("Hello?", 50);
         DisplayMessage("Is somebody receiving this?", 50);
-        DisplayOptions("Did you just breach our firewall?", "Who is this?", "This is Station #476 of the United States Space Agency. How did you access this terminal?", "'Don't Respond'");
+        DisplayOptions("Did you just breach our firewall?", "Who is this?", "This is Station #476 of the United States Space Agency. How did you access this terminal?", "*Don't Respond*");
         GetResponse();
         DisplayResponse("I had no choice. Your coms division wouldn't take me seriously.", "If you give me just a few minutes, I can tell you.", "If you give me just a few minutes, I can explain.", "I know there's somebody there! Please!!!");
-        DisplayMessage("I'm a crew member of Station #320. We're about to committ mutiny. Your unit will be space debrit within the next 10 minutes.", 50);
+        DisplayMessage("I'm a crew member of Station #320. We're about to committ a mutiny. Your unit will be space debrit within the next 10 minutes.", 50);
         DisplayOptions("Hope the federal crime was worth the laugh. Disconnect now before I get your identity and report you.", "That's impossible.", "Any proof?", "Why should I believe you?");
-        //DisplayResponse("This isn't a joke.", "More impossible than me breaching your firewall?", "");
+        GetResponse();
+        DisplayResponse("This isn't a joke!", "More impossible than me knowing that your station only has 5 gunships on board because of an unspecified emergency singal 20 lightyears away?", "How else could I know that your station only has 5 gunships on board because of an unspecified emergency singal 20 lightyears away?", "Because why would I committ a federal crime just to lie to you?");
+        DisplayMessage("Listen, I can help you save the thousands of people on board, but only if you trust me. So you really only have two options. What will it be?", 50);
+        Console.Write("\nDo you accept his help? Y or N: ");
+    }
+
+    public override void GiveInstructions()
+    {
+        Console.WriteLine("In this activity, you need to keep track of which numbers in the sequence blink.");
+        Console.WriteLine("When the sequence is finished, enter the numbers in the order that they blinked.\n");
+        Console.WriteLine("Press enter to continue.");
+        Console.ReadLine();
+        Console.Clear();
+
     }
 
     public virtual void Sequence()
     {
         ClockIn();
         Convo1();
+    }
+
+    public override void StartGame()
+    {
     }
 }
