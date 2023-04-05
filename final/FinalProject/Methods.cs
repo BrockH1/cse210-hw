@@ -1,6 +1,6 @@
 public abstract class Methods
 {
-    public bool _decision;
+    private bool _decision;
 
     public List<string> _code1 = new List<string>();
 

@@ -6,12 +6,15 @@ public class Finale:Battle
 
     }
 
+    private bool _victory = false;
+
     public int odds;
     public Battle ship = new Battle(5,5,5,5,5);
     public Battle enemy = new Battle(5,0,5,5,5);
 
     public override void StartGame()
     {
+
         string input;
         NotSafe();
         ScanPerimeter();
@@ -19,8 +22,15 @@ public class Finale:Battle
 
         GiveInstructions();
 
+        while(!_victory)
+        {
+
+        ship = new Battle(5,5,5,5,5);
+        enemy = new Battle(5,0,5,5,5);
+
         while (ship.GetShield() != 0 && ship.GetTransport() != 0 && enemy.GetShield() != 0)
         {
+        Console.WriteLine(enemy.GetShield());
         ship.CheckInventory();
         Console.WriteLine("1. Deploy Gun Ship");   
         Console.WriteLine("2. Deply Defense Ship");
@@ -115,7 +125,7 @@ public class Finale:Battle
                 enemy.SetShield(enemy.GetShield() - 1);
                 ship.SetShield(ship.GetShield() - 1);
                 ship.SetTransport(ship.GetTransport() - 1);
-                DisplayMessage("Enemy Ship fired their artillery as well. Both ships took a hit.", 50);
+                DisplayMessage("Enemy Ship fired their artillery as well. Both ships took a hit, but a transport unit escaped.", 50);
             }
             }
         }
@@ -127,17 +137,28 @@ public class Finale:Battle
         {
             DisplayMessage("Shield levels depleted", 50);
             DisplayMessage("Prepare for self destruction", 50);
+            Console.Clear();
+            DisplayQuery("Let's try that again", 30);
+            Dots();
+            Console.Clear();
         }
 
         else if (ship.GetTransport() == 0)
         {
-            DisplayMessage("You win!", 50);
+            DisplayMessage("They all made it out. You did it Officer, you're a hero.", 50);
+            Console.Clear();
+            DisplayMessage("The End", 70);
+            _victory = true;
         }
 
         else
         {
             DisplayMessage("Enemy ship destroyed! Waahooo!", 50);
+            Console.Clear();
+            DisplayMessage("The End", 70);
+            _victory = true;
         }
+    }
     }
 
     public int GetEnemyMove()
