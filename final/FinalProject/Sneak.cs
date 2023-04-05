@@ -23,8 +23,7 @@ public class Sneak:Methods
         DisplayOptions("I lost the image!", "I think I did before the footage disappeared.", "Yeah, just in time too. I lost the footage.", "Not sure, the image is gone.");
         GetResponse();
         DisplayMessage("Thought that might happen. It looks like you can't talk to me and view the footage at the same time. You'll have to memorize the path.", 50);
-        DisplayMessage("I'm pretty sure the room he's in now has a terminal that can disable their artillery. If you can get me to that room as well, I can disable it.", 50);
-        DisplayMessage("But at the very least, you need to lead me to where the captain went. You should be able to see me in the footage. \nSend me the directions when you're ready.", 50);
+        DisplayMessage("I need you to lead to the room he was just in, then to the exit he took. You should be able to see me in the footage. \nSend me the directions when you're ready.", 50);
         Console.Clear();
         InputPath();
     }
@@ -37,6 +36,7 @@ public class Sneak:Methods
         {
         ShowPosition1();
         _path = "";
+        input = "";
         Console.WriteLine("Type 'Done' when you're finished.");
         while (input != "Done")
         {
@@ -68,6 +68,7 @@ public class Sneak:Methods
             {
                 Console.Clear();
                 DisplayMessage("I made it!", 50);
+                DisplayMessage("I got you access to your ships's units. You can now control which is sent out.\nDon't ask how that works, whoever programmed this wanted to finish his project and go home. And his professor told him that he doesn't care about the UI. Get ready!", 50);
                 isCorrect = true;
             }
 
@@ -77,6 +78,10 @@ public class Sneak:Methods
             }
             }
         }
+        else
+            {
+                DisplayMessage("That's not right. Check again.", 50);
+            }
         }
     }
 
